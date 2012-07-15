@@ -1,5 +1,11 @@
 require "tlux/version"
 
 module Tlux
-  # Your code goes here...
 end
+
+require "tlux/splitable"
+require "tlux/commandable"
+
+require "tlux/session"
+require "tlux/window"
+require "tlux/pane"

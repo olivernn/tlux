@@ -1,4 +1,5 @@
 require "tlux/version"
+require "erb"
 
 module Tlux
 end

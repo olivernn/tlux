@@ -1,0 +1,15 @@
+source-file ~/.tmux.conf
+
+new-session -s <%= name %> -n <%= windows.first.name %> -d
+
+<% windows.each_with_index do |window_idx, window| %>
+  send-keys -t <%= name %> 'cd <%= dir %>' C-m
+  send-keys -t <%= name %> '<%= window.command %>' C-m
+
+  <% window.panes.each_with_index do |pane_idx, pane| %>
+    split-window -v -t <%= name %>
+    send-keys -t <%= name %>:<%= window_idx %>.<%= pane_idx %> 'cd <%= dir %>'
+    send-keys -t <%= name %>:<%= window_idx %>.<%= pane_idx %> '<%= pane.command %>'
+  <% end %>
+
+<% end %>

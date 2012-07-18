@@ -5,3 +5,4 @@ module Tlux
 end
 
 require 'tlux/config/parser'
+require 'tlux/config/generator'

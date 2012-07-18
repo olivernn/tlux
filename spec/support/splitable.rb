@@ -13,5 +13,16 @@ shared_examples_for Tlux::Splitable do
         splitable.split orientation, opts
       }.to change(splitable.panes, :size).by(1)
     end
+
+    it "should call the passed block with the context of the new pane" do
+      pane = nil
+
+      splitable.split :vertical do
+        pane = self
+      end
+
+      pane.should be_kind_of(Tlux::Pane)
+      pane.orientation.should == :vertical
+    end
   end
 end

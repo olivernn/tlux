@@ -1,5 +1,6 @@
 require "tlux/version"
 require "erb"
+require "fileutils"
 
 module Tlux
 end

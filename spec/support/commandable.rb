@@ -6,4 +6,13 @@ shared_examples_for Tlux::Commandable do
       }.to change(commandable.commands, :size).by(1)
     end
   end
+
+  describe "#directory" do
+    let(:dir) { "~/code/tlux" }
+
+    it "should set the directory" do
+      commandable.directory dir
+      commandable.directory.should == dir
+    end
+  end
 end

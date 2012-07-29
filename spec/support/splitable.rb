@@ -22,7 +22,7 @@ shared_examples_for Tlux::Splitable do
       end
 
       pane.should be_kind_of(Tlux::Pane)
-      pane.orientation.should == :vertical
+      pane.orientation.should_not be_nil
     end
   end
 end

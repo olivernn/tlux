@@ -4,8 +4,8 @@ require File.expand_path('../lib/tlux/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Oliver Nightingale"]
   gem.email         = ["oliver.nightingale1@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Luxurious tmux configuration}
+  gem.summary       = %q{Luxurious tmux configuration}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
@@ -16,4 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = Tlux::VERSION
 
   gem.add_development_dependency('rspec')
+  #gem.add_development_dependency('fakefs')
 end

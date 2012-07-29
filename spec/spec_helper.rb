@@ -7,6 +7,8 @@
 require 'rubygems'
 require 'bundler/setup'
 
+require 'fakefs/safe'
+
 require 'tlux'
 
 Dir[File.expand_path('../support/**/*.rb', __FILE__)].each do |file|

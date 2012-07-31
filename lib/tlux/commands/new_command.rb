@@ -10,10 +10,15 @@ module Tlux
       def run(open_editor = true)
         setup
         create_config unless File.exists?(config_file_path)
-        exec "$EDITOR #{config_file_path}" if open_editor
+        raise Tlux::EditorNotDefinedError unless editor
+        exec "#{editor} #{config_file_path}" if open_editor
       end
 
       private
+
+      def editor
+        [ENV['TLUX_EDITOR'], ENV['VISUAL'], ENV['EDITOR']].find{|e| !e.nil? && !e.empty? }
+      end
 
       def config_file_path
         File.join(config_path, config_name)

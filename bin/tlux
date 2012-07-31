@@ -6,12 +6,27 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 require 'tlux'
 
 if ARGV.any?
+  begin
+
   puts Tlux::Commands.run(ARGV.shift, ARGV)
+
+  rescue Tlux::EditorNotDefinedError
+    puts "You must define an editor in either $TMUX_EDITOR or $EDITOR to use this command"
+    exit 1
+
+  rescue Tlux::Config::FileNotFound 
+    puts "Tlux config file not found #{ARGV[0]}"
+    exit 1
+  end
 else
+
   puts <<-EOF
+Tlux version: #{Tlux::VERSION}
+
 Usage:
   tlux new <config_name> : creates a new a config file and opens it in your editor
   tlux list              : lists the currently available configs
   tlux run <config_name> : attach a tmux session with the given config name
 EOF
 end
+

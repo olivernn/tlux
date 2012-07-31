@@ -4,6 +4,7 @@ require "fileutils"
 
 module Tlux
   TEMPLATES_PATH = File.join(File.dirname(__FILE__), 'tlux', 'templates')
+  class EditorNotDefinedError < StandardError ; end
 end
 
 require "tlux/splitable"

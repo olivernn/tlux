@@ -1,29 +1,46 @@
-# Tlux
+#Tlux
 
-TODO: Write a gem description
+Luxurious tmux configuration with Ruby.
 
-## Installation
+##About
 
-Add this line to your application's Gemfile:
+Specify your tmux environments using an intuitive DSL instead of having to remember tmux commands.
 
-    gem 'tlux'
+Set up different environemnts that can be shared between projects, have an environment for your Rails projects and specify it once, rather than once per project.
 
-And then execute:
+##Usage
 
-    $ bundle
+Tlux is available as a ruby gem, it has dependencies on tmux.  Once you have tmux installed install the tlux gem:
 
-Or install it yourself as:
+	gem install tlux
 
-    $ gem install tlux
+To get usage details just run the tlux command without any args
 
-## Usage
+	tlux
 
-TODO: Write usage instructions here
+##Config
 
-## Contributing
+An example config showing some of the commands available
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+	window :editor do
+		command "vim ."
+		
+		split :vertical, percentage: 30 do
+			split :horizontal, lines: 20
+		end
+	end
+	
+	window :console do
+		command "tail -f log/development.log"
+		
+		split :vertical do
+			command "rails c"
+		end
+	end
+	
+	window :server do
+		command "rails s"
+	end
+
+
+		

@@ -10,12 +10,15 @@ send-keys -t <%= name %> 'cd <%= dir %>' C-m
     new-window -n <%= window.name %> -t <%= name %>
   <% end %>
 
+  send-keys -t <%= name %> 'cd <%= dir %>' C-m
+
   <% window.commands.each do |command| %>
     send-keys -t <%= name %> '<%= command %>' C-m
   <% end %>
 
   <% window.panes.each_with_index do |pane, pane_idx| %>
     split-window <%= pane.orientation %> <%= pane.size %> -t <%= name %>
+    send-keys -t <%= name %>:<%= window_idx + 1 %>.<%= pane_idx + 1 %> 'cd <%= dir %>'
     <% pane.commands.each do |command| %>
       send-keys -t <%= name %>:<%= window_idx + 1 %>.<%= pane_idx + 1 %> '<%= command %>'
     <% end %>

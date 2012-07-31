@@ -5,4 +5,13 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 
 require 'tlux'
 
-puts Tlux::Commands.run(ARGV.shift, ARGV)
+if ARGV.any?
+  puts Tlux::Commands.run(ARGV.shift, ARGV)
+else
+  puts <<-EOF
+Usage:
+  tlux new <config_name> : creates a new a config file and opens it in your editor
+  tlux list              : lists the currently available configs
+  tlux run <config_name> : attach a tmux session with the given config name
+EOF
+end

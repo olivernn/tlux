@@ -4,8 +4,6 @@ module Tlux
 
       attr_reader :session, :template
 
-      TEMPLATE_PATH = File.join(File.dirname(__FILE__), '..', 'templates', 'config.erb')
-
       def initialize(session)
         @session = session
       end
@@ -21,7 +19,7 @@ module Tlux
       private
 
       def template
-        File.open(TEMPLATE_PATH, 'r') do |f|
+        File.open(File.join(Tlux::TEMPLATES_PATH, 'config.erb'), 'r') do |f|
           ERB.new(f.read)
         end
       end

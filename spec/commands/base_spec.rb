@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tlux::Commands::BaseCommand do
+describe Tlux::Commands::Base do
   describe "#setup" do
     before :each do
       FakeFS.activate!
@@ -10,7 +10,7 @@ describe Tlux::Commands::BaseCommand do
       FakeFS.deactivate!
     end
 
-    subject { Tlux::Commands::BaseCommand.new }
+    subject { Tlux::Commands::Base.new }
 
     context "tlux directory not present" do
       it "should create the tlux directory structure" do
@@ -45,7 +45,7 @@ describe Tlux::Commands::BaseCommand do
   end
 
   describe "config_path" do
-    subject { Tlux::Commands::BaseCommand.new }
+    subject { Tlux::Commands::Base.new }
 
     it "should return the path to the config files" do
       subject.config_path.should == File.join(Dir.home, '.tlux')
@@ -53,7 +53,7 @@ describe Tlux::Commands::BaseCommand do
   end
 
   describe "generated_path" do
-    subject { Tlux::Commands::BaseCommand.new }
+    subject { Tlux::Commands::Base.new }
 
     it "should return the path to the generated files" do
       subject.generated_path.should == File.join(Dir.home, '.tlux', 'generated')

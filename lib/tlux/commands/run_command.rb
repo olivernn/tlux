@@ -1,6 +1,6 @@
 module Tlux
   module Commands
-    class RunCommand < Tlux::Commands::BaseCommand
+    class RunCommand < Tlux::Commands::Base
 
       attr_reader :config_name
 
@@ -9,7 +9,7 @@ module Tlux
       end
 
       def run
-        parser = Tlux::Config::Parser.from_file(config_path)
+        parser = Tlux::Config::Parser.from_file(config_file_path)
         parser.parse!
         parser.session.name = config_name
 
@@ -19,6 +19,14 @@ module Tlux
       end
 
       private
+
+      def config_file_path
+        File.join(config_path, config_name)
+      end
+
+      def output_path
+        File.join(generated_path, config_name)
+      end
 
       def write_output(output)
         File.delete(output_path) if File.exists?(output_path)

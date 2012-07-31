@@ -5,4 +5,4 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 
 require 'tlux'
 
-Tlux::Commands.run(ARGV.shift, ARGV)
+puts Tlux::Commands.run(ARGV.shift, ARGV)

@@ -1,6 +1,6 @@
 module Tlux
   module Commands
-    class BaseCommand
+    class Base
       def setup
         FileUtils.mkdir_p(File.join(Dir.home, '.tlux', 'generated'))
       end

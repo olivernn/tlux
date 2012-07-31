@@ -1,6 +1,6 @@
 module Tlux
   module Commands
-    class ListCommand < Tlux::Commands::BaseCommand
+    class ListCommand < Tlux::Commands::Base
       def run
         setup
 

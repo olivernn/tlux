@@ -7,7 +7,7 @@ module Tlux
   end
 end
 
-require 'tlux/commands/base_command'
+require 'tlux/commands/base'
 require 'tlux/commands/list_command'
 require 'tlux/commands/run_command'
 require 'tlux/commands/new_command'

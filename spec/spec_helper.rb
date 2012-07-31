@@ -26,3 +26,11 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+def empty_tlux_dir!
+  FakeFS do
+    path = File.join(Dir.home, '.tlux')
+    return unless Dir.exists?(path)
+    Dir.foreach(path) { |filename| File.delete(File.join(path, filename)) if File.exists?(File.join(path, filename)) }
+  end
+end

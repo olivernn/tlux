@@ -3,6 +3,7 @@ require "erb"
 require "fileutils"
 
 module Tlux
+  TEMPLATES_PATH = File.join(File.dirname(__FILE__), 'tlux', 'templates')
 end
 
 require "tlux/splitable"

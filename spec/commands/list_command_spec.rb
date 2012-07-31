@@ -4,6 +4,7 @@ describe Tlux::Commands::ListCommand do
   describe "#run" do
     before :each do
       FakeFS.activate!
+      FakeFS::FileSystem.clear
     end
 
     after :each do
@@ -21,11 +22,6 @@ describe Tlux::Commands::ListCommand do
 
     context "no configs available" do
       let(:list) { subject.run }
-
-      before :each do
-        path = File.join(Dir.home, '.tlux')
-        Dir.foreach(path) { |filename| File.delete(File.join(path, filename)) if File.exists?(File.join(path, filename)) }
-      end
 
       it "should return an empty array" do
         list.should be_kind_of Array

@@ -1,4 +1,4 @@
-tmux has-session <%= name %>
+tmux has-session -t <%= name %>
 if [ $? != 0 ]
 then
   tmux new-session -s <%= name %> -n <%= windows.first.name %> -d

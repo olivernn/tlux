@@ -17,6 +17,11 @@ if ARGV.any?
   rescue Tlux::Config::FileNotFound 
     puts "Tlux config file not found #{ARGV[0]}"
     exit 1
+
+  rescue Tlux::CommandNotFoundError
+    puts "Command not available"
+    exit 1
+
   end
 else
 

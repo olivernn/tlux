@@ -1,8 +1,22 @@
 module Tlux
   module Commands
-    def self.run(command_name, args = [])
-      command = self.const_get("#{command_name.capitalize}Command").new(*args)
-      command.run
+    extend self
+
+    def run(command_name, args = [])
+      raise Tlux::CommandNotFoundError unless available?(command_name)
+      name_to_constant(command_name).new(*args).run
+    end
+
+    private
+
+    def available?(command_name)
+      !!name_to_constant(command_name)
+    rescue NameError
+      false
+    end
+
+    def name_to_constant(command_name)
+      self.const_get("#{command_name.capitalize}Command")
     end
   end
 end

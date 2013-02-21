@@ -1,3 +1,5 @@
+require 'pathname'
+
 module Tlux
   module Commands
     class RunCommand < Tlux::Commands::Base
@@ -11,21 +13,23 @@ module Tlux
       def run
         parser = Tlux::Config::Parser.from_file(config_file_path)
         parser.parse!
-        parser.session.name = config_name
+        parser.session.name = session_name
 
-        write_output Tlux::Config::Generator.new(parser.session).generate!
-
-        exec "tmux -f #{output_path} attach"
+        exec Tlux::Config::Generator.new(parser.session).generate!
       end
 
       private
+
+      def session_name
+        Pathname.new(Dir.pwd).basename
+      end
 
       def config_file_path
         File.join(config_path, config_name)
       end
 
       def output_path
-        File.join(generated_path, config_name)
+        File.join(generated_path, session_name)
       end
 
       def write_output(output)

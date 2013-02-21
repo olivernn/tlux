@@ -21,7 +21,7 @@ module Tlux
       private
 
       def session_name
-        Pathname.new(Dir.pwd).basename.replace(/\./, '-').replace(/\:/, '-')
+        Pathname.new(Dir.pwd).basename.to_s.gsub(/\./, '-').gsub(/\:/, '-')
       end
 
       def config_file_path

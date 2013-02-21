@@ -1,6 +1,6 @@
 module Tlux
   module Commands
-    class NewCommand < Tlux::Commands::Base
+    class OpenCommand < Tlux::Commands::Base
       attr_reader :config_name
 
       def initialize(config_name)

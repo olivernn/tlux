@@ -29,9 +29,9 @@ else
 Tlux version: #{Tlux::VERSION}
 
 Usage:
-  tlux new <config_name> : creates a new a config file and opens it in your editor
-  tlux list              : lists the currently available configs
-  tlux run <config_name> : attach a tmux session with the given config name
+  tlux open <config_name> : open the config file in your $EDITOR, creates config if it doesn't already exist
+  tlux list               : lists the currently available configs
+  tlux run <config_name>  : attach a tmux session with the given config name
 EOF
 end
 

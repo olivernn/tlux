@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Tlux::Commands::NewCommand do
+describe Tlux::Commands::OpenCommand do
   describe "#run" do
     let(:config_name) { 'foo' }
-    subject { Tlux::Commands::NewCommand.new(config_name) }
+    subject { Tlux::Commands::OpenCommand.new(config_name) }
 
     before :each do
       FakeFS.activate!

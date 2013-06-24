@@ -5,7 +5,6 @@ require "fileutils"
 module Tlux
   TEMPLATES_PATH = File.join(File.dirname(__FILE__), 'tlux', 'templates')
   class EditorNotDefinedError < StandardError ; end
-  class CommandNotFoundError < StandardError ; end
 end
 
 require "tlux/splitable"
@@ -15,5 +14,10 @@ require "tlux/session"
 require "tlux/window"
 require "tlux/pane"
 
-require "tlux/config"
-require "tlux/commands"
+require "tlux/config/generator"
+require "tlux/config/parser"
+
+require 'tlux/commands/base'
+require 'tlux/commands/list_command'
+require 'tlux/commands/run_command'
+require 'tlux/commands/open_command'

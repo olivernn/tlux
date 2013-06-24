@@ -14,7 +14,10 @@ module Tlux
       def run
         parser = Tlux::Config::Parser.from_file(config_file_path)
         parser.parse!
-        parser.session.dir = dir unless dir.empty?
+
+        unless dir.empty?
+          parser.session.dir(dir)
+        end
 
         exec Tlux::Config::Generator.new(parser.session).generate!
       end

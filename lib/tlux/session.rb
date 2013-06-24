@@ -1,8 +1,6 @@
 module Tlux
   class Session
-    attr_accessor :dir
     attr_reader :windows
-    attr_writer :name
 
     def initialize(name = "")
       @name = name
@@ -16,8 +14,20 @@ module Tlux
       window.instance_eval(&block) if block_given?
     end
 
-    def name
-      @name.empty? ? name_from_dir : @name
+    def name(val = nil)
+      if val.nil?
+        @name.empty? ? name_from_dir : @name
+      else
+        @name = val
+      end
+    end
+
+    def dir(val = nil)
+      if val.nil?
+        @dir
+      else
+        @dir = val
+      end
     end
 
     def get_binding

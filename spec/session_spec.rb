@@ -14,7 +14,7 @@ describe Tlux::Session do
 
     context "settable" do
       it "should have a name" do
-        session.name = "foo"
+        session.name("foo")
         session.name.should == "foo"
       end
     end
@@ -29,7 +29,7 @@ describe Tlux::Session do
     end
 
     context "settable" do
-      before { session.dir = :foo }
+      before { session.dir(:foo) }
       its(:dir) { should == :foo }
     end
   end

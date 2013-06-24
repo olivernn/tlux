@@ -11,7 +11,7 @@ module Tlux
       def generate!
         name = session.name
         windows = session.windows
-        dir = Dir.pwd
+        dir = session.dir
 
         template.result(binding)
       end

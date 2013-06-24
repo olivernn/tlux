@@ -14,9 +14,12 @@ command :run do |c|
   c.syntax = 'tlux run <config>'
   c.summary = 'Start a tmux session with the given config'
 
+  c.option '--dir STRING', String, 'The directory to run the session in'
+
   c.action do |args, options|
+    options.default dir: Dir.pwd
     config = args.shift || abort('config argument required')
-    Tlux::Commands::RunCommand.new(config).run
+    Tlux::Commands::RunCommand.new(config, options.dir).run
   end
 end
 

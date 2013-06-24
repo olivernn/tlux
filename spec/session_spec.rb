@@ -4,9 +4,33 @@ describe Tlux::Session do
   let(:session) { Tlux::Session.new }
 
   describe "#name" do
-    it "should have a name" do
-      session.name = "foo"
-      session.name.should == "foo"
+    context "default" do
+      before { Dir.stub!(:pwd).and_return('/path/to/project.js') }
+
+      subject { session.name }
+
+      it { should == "project-js" }
+    end
+
+    context "settable" do
+      it "should have a name" do
+        session.name = "foo"
+        session.name.should == "foo"
+      end
+    end
+  end
+
+  describe "#dir" do
+    before { Dir.stub!(:pwd).and_return(:pwd) }
+    subject { session }
+
+    context "default" do
+      its(:dir) { should == :pwd }
+    end
+
+    context "settable" do
+      before { session.dir = :foo }
+      its(:dir) { should == :foo }
     end
   end
 

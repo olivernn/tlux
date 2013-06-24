@@ -4,25 +4,22 @@ module Tlux
   module Commands
     class RunCommand < Tlux::Commands::Base
 
-      attr_reader :config_name
+      attr_reader :config_name, :dir
 
-      def initialize(config_name)
+      def initialize(config_name, dir = '')
         @config_name = config_name
+        @dir = dir
       end
 
       def run
         parser = Tlux::Config::Parser.from_file(config_file_path)
         parser.parse!
-        parser.session.name = session_name
+        parser.session.dir = dir unless dir.empty?
 
         exec Tlux::Config::Generator.new(parser.session).generate!
       end
 
       private
-
-      def session_name
-        Pathname.new(Dir.pwd).basename.to_s.gsub(/\./, '-').gsub(/\:/, '-')
-      end
 
       def config_file_path
         File.join(config_path, config_name)

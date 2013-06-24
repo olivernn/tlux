@@ -4,34 +4,36 @@ lib = File.expand_path(File.dirname(__FILE__) + '/../lib')
 $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 
 require 'tlux'
+require 'commander/import'
 
-if ARGV.any?
-  begin
+program :name, 'tlux'
+program :version, Tlux::VERSION
+program :description, 'Luxurious tmux configuration'
 
-  puts Tlux::Commands.run(ARGV.shift, ARGV)
+command :run do |c|
+  c.syntax = 'tlux run <config>'
+  c.summary = 'Start a tmux session with the given config'
 
-  rescue Tlux::EditorNotDefinedError
-    puts "You must define an editor in either $TMUX_EDITOR or $EDITOR to use this command"
-    exit 1
-
-  rescue Tlux::Config::FileNotFound 
-    puts "Tlux config file not found #{ARGV[0]}"
-    exit 1
-
-  rescue Tlux::CommandNotFoundError
-    puts "Command not available"
-    exit 1
-
+  c.action do |args, options|
+    config = args.shift || abort('config argument required')
+    Tlux::Commands::RunCommand.new(config).run
   end
-else
+end
 
-  puts <<-EOF
-Tlux version: #{Tlux::VERSION}
+command :list do |c|
+  c.syntax = 'tlux list'
 
-Usage:
-  tlux open <config_name> : open the config file in your $EDITOR, creates config if it doesn't already exist
-  tlux list               : lists the currently available configs
-  tlux run <config_name>  : attach a tmux session with the given config name
-EOF
+  c.action do |args, options|
+    puts Tlux::Commands::ListCommand.new.run
+  end
+end
+
+command :open do |c|
+  c.syntax = 'tlux open <config>'
+
+  c.action do |args, options|
+    config = args.shift || abort('config argument required')
+    Tlux::Commands::OpenCommand.new(config).run
+  end
 end
 

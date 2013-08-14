@@ -40,3 +40,7 @@ command :open do |c|
   end
 end
 
+alias_command :r, :run
+alias_command :ls, :list
+alias_command :l, :list
+alias_command :o, :open

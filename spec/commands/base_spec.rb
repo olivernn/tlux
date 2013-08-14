@@ -17,29 +17,26 @@ describe Tlux::Commands::Base do
         subject.setup
 
         Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
-        Dir.exists?(File.join(Dir.home, '.tlux', 'generated')).should be_true
       end
     end
 
     context "tlux directory already present" do
       before :each do
-        FileUtils.mkdir_p(File.join(Dir.home, '.tlux', 'generated'))
+        FileUtils.mkdir_p(File.join(Dir.home, '.tlux'))
         FileUtils.touch(File.join(Dir.home, '.tlux', 'test'))
-        FileUtils.touch(File.join(Dir.home, '.tlux', 'generated', 'test'))
       end
 
       it "should not re-create the directory structure" do
         subject.setup
 
         Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
-        Dir.exists?(File.join(Dir.home, '.tlux', 'generated')).should be_true
+        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
       end
 
       it "should not loose the existing files" do
         subject.setup
 
         File.exists?(File.join(Dir.home, '.tlux', 'test')).should be_true
-        File.exists?(File.join(Dir.home, '.tlux', 'generated', 'test')).should be_true
       end
     end
   end
@@ -49,14 +46,6 @@ describe Tlux::Commands::Base do
 
     it "should return the path to the config files" do
       subject.config_path.should == File.join(Dir.home, '.tlux')
-    end
-  end
-
-  describe "generated_path" do
-    subject { Tlux::Commands::Base.new }
-
-    it "should return the path to the generated files" do
-      subject.generated_path.should == File.join(Dir.home, '.tlux', 'generated')
     end
   end
 end

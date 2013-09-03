@@ -10,6 +10,8 @@ program :name, 'tlux'
 program :version, Tlux::VERSION
 program :description, 'Luxurious tmux configuration'
 
+default_command :help
+
 command :run do |c|
   c.syntax = 'tlux run <config>'
   c.summary = 'Start a tmux session with the given config'

@@ -37,7 +37,7 @@ describe Tlux::Config::Parser do
     subject { Tlux::Config::Parser.new config }
 
     before :each do
-      Tlux::Session.stub!(:new).and_return(session)
+      Tlux::Session.stub(:new).and_return(session)
     end
 
     it "should instance eval the config with the new session" do

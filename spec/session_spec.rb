@@ -5,7 +5,7 @@ describe Tlux::Session do
 
   describe "#name" do
     context "default" do
-      before { Dir.stub!(:pwd).and_return('/path/to/project.js') }
+      before { Dir.stub(:pwd).and_return('/path/to/project.js') }
 
       subject { session.name }
 
@@ -21,7 +21,7 @@ describe Tlux::Session do
   end
 
   describe "#dir" do
-    before { Dir.stub!(:pwd).and_return(:pwd) }
+    before { Dir.stub(:pwd).and_return(:pwd) }
     subject { session }
 
     context "default" do

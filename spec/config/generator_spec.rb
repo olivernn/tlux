@@ -6,7 +6,7 @@ describe Tlux::Config::Generator do
     subject { Tlux::Config::Generator.new(session) }
 
     it "should have a session" do
-      subject.session.should == session
+      expect(subject.session).to eq session
     end
   end
 

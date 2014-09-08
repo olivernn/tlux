@@ -5,7 +5,7 @@ shared_examples_for Tlux::Splitable do
 
     it "should create a new pane" do
       splitable.split(orientation, opts)
-      splitable.panes.first.should be_kind_of Tlux::Pane
+      expect(splitable.panes.first).to be_kind_of Tlux::Pane
     end
 
     it "should add the new pane to the list of panes" do
@@ -21,8 +21,8 @@ shared_examples_for Tlux::Splitable do
         pane = self
       end
 
-      pane.should be_kind_of(Tlux::Pane)
-      pane.orientation.should_not be_nil
+      expect(pane).to be_kind_of Tlux::Pane
+      expect(pane.orientation).to_not be_nil
     end
   end
 end

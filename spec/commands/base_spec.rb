@@ -16,27 +16,26 @@ describe Tlux::Commands::Base do
       it "should create the tlux directory structure" do
         subject.setup
 
-        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
+        expect(Dir.exists? tlux_config_file).to eq true
       end
     end
 
     context "tlux directory already present" do
       before :each do
-        FileUtils.mkdir_p(File.join(Dir.home, '.tlux'))
-        FileUtils.touch(File.join(Dir.home, '.tlux', 'test'))
+        subject.setup
+        FileUtils.touch tlux_config_test_file
       end
 
       it "should not re-create the directory structure" do
         subject.setup
 
-        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
-        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
+        expect(Dir.exists? tlux_config_file).to eq true
       end
 
       it "should not loose the existing files" do
         subject.setup
 
-        File.exists?(File.join(Dir.home, '.tlux', 'test')).should be_true
+        expect(File.exists? tlux_config_test_file).to eq true
       end
     end
   end
@@ -45,7 +44,7 @@ describe Tlux::Commands::Base do
     subject { Tlux::Commands::Base.new }
 
     it "should return the path to the config files" do
-      subject.config_path.should == File.join(Dir.home, '.tlux')
+      expect(subject.config_path).to eq tlux_config_file
     end
   end
 end

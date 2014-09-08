@@ -13,7 +13,7 @@ describe Tlux::Config::Parser do
     context "config file does exist" do
       it "should return a new instance of Tlux::Config::Parser" do
         parser = Tlux::Config::Parser.from_file(File.join('spec', 'fixtures', 'sample_config.rb'))
-        parser.should be_kind_of(Tlux::Config::Parser)
+        expect(parser).to be_kind_of Tlux::Config::Parser
       end
     end
   end
@@ -23,11 +23,11 @@ describe Tlux::Config::Parser do
     subject { Tlux::Config::Parser.new config }
 
     it "should have a config string" do
-      subject.config.should == config
+      expect(subject.config).to eq config
     end
 
     it "should have a new session object" do
-      subject.session.should be_kind_of Tlux::Session
+      expect(subject.session).to be_kind_of Tlux::Session
     end
   end
 
@@ -37,11 +37,11 @@ describe Tlux::Config::Parser do
     subject { Tlux::Config::Parser.new config }
 
     before :each do
-      Tlux::Session.stub(:new).and_return(session)
+      allow(Tlux::Session).to receive(:new).and_return(session)
     end
 
     it "should instance eval the config with the new session" do
-      session.should_receive(:instance_eval).with(config)
+      allow(session).to receive(:instance_eval).with(config)
       subject.parse!
     end
   end

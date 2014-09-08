@@ -12,7 +12,7 @@ shared_examples_for Tlux::Commandable do
 
     it "should set the directory" do
       commandable.directory dir
-      commandable.directory.should == dir
+      expect(commandable.directory).to eq dir
     end
   end
 end

@@ -38,7 +38,7 @@ describe Tlux::Commands::ListCommand do
       end
 
       it "should return an array with the name of the config" do
-        expect(list).to include(config_name)
+        expect(list).to include config_name
       end
     end
 
@@ -54,7 +54,7 @@ describe Tlux::Commands::ListCommand do
 
       it "should return an array with all the names of the config" do
         config_names.each do |config_name|
-          expect(list).to include(config_name)
+          expect(list).to include config_name
         end
       end
     end

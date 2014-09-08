@@ -25,7 +25,7 @@ describe Tlux::Commands::OpenCommand do
 
     it "should create the config file" do
       subject.run(false)
-      File.exists?(File.join(Dir.home, '.tlux', config_name))
+      expect(File.exists?(File.join(Dir.home, '.tlux', config_name))).to eq true
     end
   end
 end

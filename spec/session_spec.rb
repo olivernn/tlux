@@ -5,32 +5,39 @@ describe Tlux::Session do
 
   describe "#name" do
     context "default" do
-      before { Dir.stub(:pwd).and_return('/path/to/project.js') }
+      before { allow(Dir).to receive(:pwd).and_return('/path/to/project.js') }
 
       subject { session.name }
 
-      it { should == "project-js" }
+      it 'should have the correct project name' do
+        expect(subject).to eq 'project-js'
+      end
     end
 
     context "settable" do
       it "should have a name" do
         session.name("foo")
-        session.name.should == "foo"
+        expect(session.name).to eq 'foo'
       end
     end
   end
 
   describe "#dir" do
-    before { Dir.stub(:pwd).and_return(:pwd) }
+    before { allow(Dir).to receive(:pwd).and_return(:pwd) }
     subject { session }
 
     context "default" do
-      its(:dir) { should == :pwd }
+      it 'should return the correct working directory' do
+        expect(subject.dir).to eq :pwd
+      end
     end
 
     context "settable" do
       before { session.dir(:foo) }
-      its(:dir) { should == :foo }
+
+      it 'should be settable' do
+        expect(subject.dir).to eq :foo
+      end
     end
   end
 
@@ -39,7 +46,7 @@ describe Tlux::Session do
     let(:opts) { {:baz => true} }
 
     it "should create a new window" do
-      Tlux::Window.should_receive(:new).with(name, opts)
+      allow(Tlux::Window).to receive(:new).with(name, opts)
       session.window name, opts
     end
 
@@ -56,8 +63,8 @@ describe Tlux::Session do
         window = self
       end
 
-      window.should be_kind_of(Tlux::Window)
-      window.name.should == "foo"
+      expect(window).to be_kind_of Tlux::Window
+      expect(window.name).to eq 'foo'
     end
   end
 end

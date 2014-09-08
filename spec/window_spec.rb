@@ -13,7 +13,7 @@ describe Tlux::Window do
     subject { Tlux::Window.new("foo") }
 
     it "should have a name" do
-      subject.name.should == "foo"
+      expect(subject.name).to eq 'foo'
     end
   end
 end

@@ -16,8 +16,8 @@ describe Tlux::Commands::Base do
       it "should create the tlux directory structure" do
         subject.setup
 
-        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
-        Dir.exists?(File.join(Dir.home, '.tlux', 'generated')).should be_true
+        expect(Dir.exists?(File.join(Dir.home, '.tlux'))).to eq true
+        expect(Dir.exists?(File.join(Dir.home, '.tlux', 'generated'))).to eq true
       end
     end
 
@@ -31,15 +31,15 @@ describe Tlux::Commands::Base do
       it "should not re-create the directory structure" do
         subject.setup
 
-        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
-        Dir.exists?(File.join(Dir.home, '.tlux', 'generated')).should be_true
+        expect(Dir.exists?(File.join(Dir.home, '.tlux'))).to eq true
+        expect(Dir.exists?(File.join(Dir.home, '.tlux', 'generated'))).to eq true
       end
 
       it "should not loose the existing files" do
         subject.setup
 
-        File.exists?(File.join(Dir.home, '.tlux', 'test')).should be_true
-        File.exists?(File.join(Dir.home, '.tlux', 'generated', 'test')).should be_true
+        expect(File.exists?(File.join(Dir.home, '.tlux', 'test'))).to eq true
+        expect(File.exists?(File.join(Dir.home, '.tlux', 'generated', 'test'))).to eq true
       end
     end
   end
@@ -48,7 +48,7 @@ describe Tlux::Commands::Base do
     subject { Tlux::Commands::Base.new }
 
     it "should return the path to the config files" do
-      subject.config_path.should == File.join(Dir.home, '.tlux')
+      expect(subject.config_path).to eq File.join(Dir.home, '.tlux')
     end
   end
 
@@ -56,7 +56,7 @@ describe Tlux::Commands::Base do
     subject { Tlux::Commands::Base.new }
 
     it "should return the path to the generated files" do
-      subject.generated_path.should == File.join(Dir.home, '.tlux', 'generated')
+      expect(subject.generated_path).to eq File.join(Dir.home, '.tlux', 'generated')
     end
   end
 end

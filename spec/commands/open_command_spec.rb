@@ -19,7 +19,7 @@ describe Tlux::Commands::OpenCommand do
     context "tlux dir doesn't exist" do
       it "should create the tlux dir" do
         subject.run(false)
-        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
+        expect(Dir.exists?(File.join(Dir.home, '.tlux'))).to eq true
       end
     end
 

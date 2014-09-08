@@ -33,3 +33,19 @@ def empty_tlux_dir!
     Dir.foreach(path) { |filename| File.delete(File.join(path, filename)) if File.exists?(File.join(path, filename)) }
   end
 end
+
+def tlux_generated_dir
+  File.join(Dir.home, '.tlux', 'generated')
+end
+
+def tlux_generated_file(file_name)
+  File.join(tlux_generated_dir, file_name)
+end
+
+def tlux_config_file
+  File.join(Dir.home, '.tlux')
+end
+
+def tlux_config_test_file
+  File.join(tlux_config_file, 'test')
+end

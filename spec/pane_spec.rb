@@ -14,7 +14,7 @@ describe Tlux::Pane do
       subject { Tlux::Pane.new(:vertical) }
 
       it "should be v" do
-        subject.orientation.should == '-v'
+        expect(subject.orientation).to eq '-v'
       end
     end
 
@@ -22,7 +22,7 @@ describe Tlux::Pane do
       subject { Tlux::Pane.new(:horizontal) }
 
       it "should be h" do
-        subject.orientation.should == '-h'
+        expect(subject.orientation).to eq '-h'
       end
     end
 
@@ -30,7 +30,7 @@ describe Tlux::Pane do
       subject { Tlux::Pane.new }
 
       it "should be v" do
-        subject.orientation.should == '-v'
+        expect(subject.orientation).to eq '-v'
       end
     end
   end
@@ -40,7 +40,7 @@ describe Tlux::Pane do
       subject { Tlux::Pane.new }
 
       it "should be nil" do
-        subject.size.should be_nil
+        expect(subject.size).to be_nil
       end
     end
 
@@ -48,7 +48,7 @@ describe Tlux::Pane do
       subject { Tlux::Pane.new(:vertical, lines: 20) }
 
       it "should be -l 20" do
-        subject.size.should == "-l 20"
+        expect(subject.size).to eq "-l 20"
       end
     end
 
@@ -56,7 +56,7 @@ describe Tlux::Pane do
       subject { Tlux::Pane.new(:vertical, percentage: 20) }
 
       it "should be -p 20" do
-        subject.size.should == "-p 20"
+        expect(subject.size).to eq "-p 20"
       end
     end
   end

@@ -16,7 +16,7 @@ describe Tlux::Commands::ListCommand do
     context "tlux dir not set up" do
       it "should set up the tlux dir" do
         subject.run
-        Dir.exists?(File.join(Dir.home, '.tlux')).should be_true
+        expect(Dir.exists?(File.join(Dir.home, '.tlux'))).to eq true
       end
     end
 
@@ -24,8 +24,8 @@ describe Tlux::Commands::ListCommand do
       let(:list) { subject.run }
 
       it "should return an empty array" do
-        list.should be_kind_of Array
-        list.should be_empty
+        expect(list).to be_kind_of Array
+        expect(list).to be_empty
       end
     end
 
@@ -38,7 +38,7 @@ describe Tlux::Commands::ListCommand do
       end
 
       it "should return an array with the name of the config" do
-        list.include?(config_name).should be_true
+        expect(list).to include config_name
       end
     end
 
@@ -54,7 +54,7 @@ describe Tlux::Commands::ListCommand do
 
       it "should return an array with all the names of the config" do
         config_names.each do |config_name|
-          list.include?(config_name).should be_true
+          expect(list).to include config_name
         end
       end
     end
